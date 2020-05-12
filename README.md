@@ -1,2 +1,2 @@
-# shell-interpreter
-Простой интерпретатор shell (языка командной оболочки UNIX). Не поддерживает автодополнение по tab и не хранит историю команд.
+# Description
+A simple implementation of the Unix shell interpreter.
