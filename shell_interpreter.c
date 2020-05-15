@@ -1,4 +1,4 @@
-// Simple shell interpreter implementation
+// A simple shell interpreter implementation
 // @author Stepan Belousov
 #include <fcntl.h>
 #include <limits.h>
@@ -49,7 +49,7 @@ status_t get_line(char result[]) {
 	return INTERPRETER_OK;
 }
 
-// Replace ~ with full path
+// Replace ~ with a full path
 void replace_homepath(char result[], char* src) {
 	if (!src) {
 		src = getenv("HOME");
@@ -70,7 +70,7 @@ int main() {
 	const char* delimiters = " \t";
 
 	while (true) {
-		// Print prompt
+		// Print the prompt
 		if (!getcwd(dir, PATH_MAX)) {
 			perror("Get_cur_dir error");
 			break;
@@ -87,7 +87,7 @@ int main() {
 		fprintf(stderr,"%s@%s:", pwd->pw_name, strtok(host, "."));
 		fprintf(stderr,"%s$ ", dir);
 
-		// Read input
+		// Read the input
 		status_t st = get_line(line);
 		if (st == INTERPRETER_ERROR) {
 			continue;
@@ -148,10 +148,10 @@ int main() {
 		}
 		if (ppos) {
 			pipe(fd);
-			// Set end of the first args array
+			// Set the end of the first args array
 			argv[ppos] = NULL;
 
-			// First process
+			// The first process
 			cpid = fork();
 			if (cpid == -1) {
 				perror("Fork() error");
@@ -169,7 +169,7 @@ int main() {
 				_exit(1);
 			}
 			
-			// Second process
+			// The second process
 			cpid = fork();
 			if (cpid == -1) {
 				perror("Fork() error");
@@ -200,10 +200,10 @@ int main() {
 			return 0;
 		}
 		if (cpid) {
-			// In parent process
+			// In the parent process
 			wait(&wait_st);
 		} else {
-			// In child process
+			// In the child process
 			execvp(argv[0], argv);
 			replace_homepath(dir, argv[0]);
 			if (!chdir(dir)) {
@@ -214,5 +214,6 @@ int main() {
 			_exit(1);
 		}
 	}
+
 	return 0;
 }
