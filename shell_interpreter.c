@@ -1,5 +1,8 @@
 // A simple shell interpreter implementation
 // @author Stepan Belousov
+
+#define _DEFAULT_SOURCE
+
 #include <fcntl.h>
 #include <limits.h>
 #include <pwd.h>
