@@ -5,5 +5,5 @@ set(CMAKE_C_STANDARD_REQUIRED OFF)
 project(shell_interpreter)
 
 add_executable(shell_interpreter
-shell_interpreter.c
+    src/shell_interpreter.c
 )
